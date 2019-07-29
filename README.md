@@ -1,4 +1,4 @@
-# Recommendations-IBM
+# Predicting customer churn with Spark
 
 ## Motivation
 
