@@ -4,7 +4,8 @@
 
 Fin in this repository an approach to predict customer churn using Spark. The code has been developed in local mode with a subset of the data for efficiency purposes. Although the whole dataset (12GB) could be analyzed on a single machine, spark code allows us to develop an extensible framework scalable to bigger volumes of data to be run within a cluster hosted by a cloud provider.
 
-The analysis has been performed using simulated data from a music provider called **Sparkify**
+The analysis has been performed using simulated data from a music provider called **Sparkify**. Further explanation and viasualizations can be found in this [post (https://medium.com/@johnmartnez_96424/using-streaming-music-data-to-predict-customer-churn-4690260b626a?sk=746c2072428ae57d1b7d939bdab28487)][post].
+
 
 ## Required libraries
 
