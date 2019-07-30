@@ -13214,7 +13214,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">path_to_data</span> <span class="o">=</span> <span class="s1">&#39;mini_sparkify_event_data.json&#39;</span>
@@ -13231,7 +13231,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sdf</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Check first which data types we are dealing with</span>
+<span class="n">sdf</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13279,6 +13280,359 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>In order to have an easier to understand visualization, we´ll have a first look of the dataframe using pandas</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pdf</span> <span class="o">=</span> <span class="n">sdf</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
+<span class="n">pdf</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[36]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>artist</th>
+      <th>auth</th>
+      <th>firstName</th>
+      <th>gender</th>
+      <th>itemInSession</th>
+      <th>lastName</th>
+      <th>length</th>
+      <th>level</th>
+      <th>location</th>
+      <th>method</th>
+      <th>page</th>
+      <th>registration</th>
+      <th>sessionId</th>
+      <th>song</th>
+      <th>status</th>
+      <th>ts</th>
+      <th>userAgent</th>
+      <th>userId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Martha Tilston</td>
+      <td>Logged In</td>
+      <td>Colin</td>
+      <td>M</td>
+      <td>50</td>
+      <td>Freeman</td>
+      <td>277.89016</td>
+      <td>paid</td>
+      <td>Bakersfield, CA</td>
+      <td>PUT</td>
+      <td>NextSong</td>
+      <td>1.538173e+12</td>
+      <td>29</td>
+      <td>Rockpools</td>
+      <td>200</td>
+      <td>1538352117000</td>
+      <td>Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) G...</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Five Iron Frenzy</td>
+      <td>Logged In</td>
+      <td>Micah</td>
+      <td>M</td>
+      <td>79</td>
+      <td>Long</td>
+      <td>236.09424</td>
+      <td>free</td>
+      <td>Boston-Cambridge-Newton, MA-NH</td>
+      <td>PUT</td>
+      <td>NextSong</td>
+      <td>1.538332e+12</td>
+      <td>8</td>
+      <td>Canada</td>
+      <td>200</td>
+      <td>1538352180000</td>
+      <td>"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebK...</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Adam Lambert</td>
+      <td>Logged In</td>
+      <td>Colin</td>
+      <td>M</td>
+      <td>51</td>
+      <td>Freeman</td>
+      <td>282.82730</td>
+      <td>paid</td>
+      <td>Bakersfield, CA</td>
+      <td>PUT</td>
+      <td>NextSong</td>
+      <td>1.538173e+12</td>
+      <td>29</td>
+      <td>Time For Miracles</td>
+      <td>200</td>
+      <td>1538352394000</td>
+      <td>Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) G...</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Enigma</td>
+      <td>Logged In</td>
+      <td>Micah</td>
+      <td>M</td>
+      <td>80</td>
+      <td>Long</td>
+      <td>262.71302</td>
+      <td>free</td>
+      <td>Boston-Cambridge-Newton, MA-NH</td>
+      <td>PUT</td>
+      <td>NextSong</td>
+      <td>1.538332e+12</td>
+      <td>8</td>
+      <td>Knocking On Forbidden Doors</td>
+      <td>200</td>
+      <td>1538352416000</td>
+      <td>"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebK...</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Daft Punk</td>
+      <td>Logged In</td>
+      <td>Colin</td>
+      <td>M</td>
+      <td>52</td>
+      <td>Freeman</td>
+      <td>223.60771</td>
+      <td>paid</td>
+      <td>Bakersfield, CA</td>
+      <td>PUT</td>
+      <td>NextSong</td>
+      <td>1.538173e+12</td>
+      <td>29</td>
+      <td>Harder Better Faster Stronger</td>
+      <td>200</td>
+      <td>1538352676000</td>
+      <td>Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) G...</td>
+      <td>30</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>At first glance, <strong>there are some features we will not get advantage from, as firstName, lastName, mehod</strong>.</p>
+<p>Let´s have a quick description of some numerical features within the dataset:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;The dataset contains </span><span class="si">{pdf.shape[0]}</span><span class="s1"> events from Sparkify users.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Each time a user takes any action within the app, an event is recorded&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;with it´s timestamp and user´s static info.&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;There are {pdf.userId.unique().shape[0]} unique users within the dataset,&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;so every user has multiple events related with her/him&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Describe numerical calculated statistics</span>
+<span class="n">pdf</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The dataset contains 286500 events from Sparkify users.
+Each time a user takes any action within the app, an event is recorded
+with it´s timestamp and user´s static info.
+There are 226 unique users within the dataset,
+so every user has multiple events related with her/him
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[43]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>itemInSession</th>
+      <th>length</th>
+      <th>registration</th>
+      <th>sessionId</th>
+      <th>status</th>
+      <th>ts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>286500.000000</td>
+      <td>228108.000000</td>
+      <td>2.781540e+05</td>
+      <td>286500.000000</td>
+      <td>286500.000000</td>
+      <td>2.865000e+05</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>114.414213</td>
+      <td>249.117182</td>
+      <td>1.535359e+12</td>
+      <td>1041.526555</td>
+      <td>210.054597</td>
+      <td>1.540957e+12</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>129.767262</td>
+      <td>99.235179</td>
+      <td>3.291322e+09</td>
+      <td>726.776263</td>
+      <td>31.505078</td>
+      <td>1.507544e+09</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.783220</td>
+      <td>1.521381e+12</td>
+      <td>1.000000</td>
+      <td>200.000000</td>
+      <td>1.538352e+12</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>27.000000</td>
+      <td>199.888530</td>
+      <td>1.533522e+12</td>
+      <td>336.000000</td>
+      <td>200.000000</td>
+      <td>1.539697e+12</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>70.000000</td>
+      <td>234.500770</td>
+      <td>1.536664e+12</td>
+      <td>1013.000000</td>
+      <td>200.000000</td>
+      <td>1.540932e+12</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>156.250000</td>
+      <td>277.158730</td>
+      <td>1.537672e+12</td>
+      <td>1675.000000</td>
+      <td>200.000000</td>
+      <td>1.542266e+12</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1321.000000</td>
+      <td>3024.665670</td>
+      <td>1.543247e+12</td>
+      <td>2474.000000</td>
+      <td>404.000000</td>
+      <td>1.543799e+12</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Exploring-Nulls">Exploring Nulls<a class="anchor-link" href="#Exploring-Nulls">&#182;</a></h3><p>Exploring the dataset looking for null values, there are nulls in several columns, but the seem to be quite consistent, because there are:</p>
 <ul>
 <li>3 columns with 58392 nulls (artist, lenght, song) all related with the song played for each event.</li>
@@ -13295,7 +13649,6 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Explore null values</span>
-<span class="n">pdf</span> <span class="o">=</span> <span class="n">sdf</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
 <span class="n">nulls</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">pdf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;rows&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;NULL VALUES PER COLUMN&#39;</span><span class="p">)</span>
@@ -15910,7 +16263,7 @@ All features added to DataFrame, done in 45975.293827056885
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">final_df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;Sparkify_MLReady_Users2.CSV&#39;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
@@ -16009,7 +16362,7 @@ All features added to DataFrame, done in 45975.293827056885
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Replace nans with zeros in the whole dataset</span>
@@ -16051,49 +16404,49 @@ All features added to DataFrame, done in 45975.293827056885
  |-- OS_Ipad: integer (nullable = true)
  |-- OS_Windows_XP: integer (nullable = true)
  |-- OS_Compatible: integer (nullable = true)
- |-- num_sessions: float (nullable = false)
- |-- mean_hours: float (nullable = false)
- |-- stdev_hours: float (nullable = false)
- |-- mean_session_h: float (nullable = false)
- |-- stdev_session_h: float (nullable = false)
- |-- mean_songs: float (nullable = false)
- |-- stdev_songs: float (nullable = false)
- |-- About17: float (nullable = false)
- |-- Add_Friend18: float (nullable = false)
- |-- Add_to_Playlist19: float (nullable = false)
- |-- Downgrade20: float (nullable = false)
- |-- Error21: float (nullable = false)
- |-- Help22: float (nullable = false)
- |-- Home23: float (nullable = false)
- |-- Logout24: float (nullable = false)
- |-- NextSong25: float (nullable = false)
- |-- Roll_Advert26: float (nullable = false)
- |-- Save_Settings27: float (nullable = false)
- |-- Settings28: float (nullable = false)
- |-- Submit_Downgrade29: float (nullable = false)
- |-- Submit_Upgrade30: float (nullable = false)
- |-- Thumbs_Down31: float (nullable = false)
- |-- Thumbs_Up32: float (nullable = false)
- |-- Upgrade33: float (nullable = false)
- |-- About34: float (nullable = false)
- |-- Add_Friend35: float (nullable = false)
- |-- Add_to_Playlist36: float (nullable = false)
- |-- Downgrade37: float (nullable = false)
- |-- Error38: float (nullable = false)
- |-- Help39: float (nullable = false)
- |-- Home40: float (nullable = false)
- |-- Logout41: float (nullable = false)
- |-- NextSong42: float (nullable = false)
- |-- Roll_Advert43: float (nullable = false)
- |-- Save_Settings44: float (nullable = false)
- |-- Settings45: float (nullable = false)
- |-- Submit_Downgrade46: float (nullable = false)
- |-- Submit_Upgrade47: float (nullable = false)
- |-- Thumbs_Down48: float (nullable = false)
- |-- Thumbs_Up49: float (nullable = false)
- |-- Upgrade50: float (nullable = false)
- |-- num_aritst: float (nullable = false)
- |-- paid_percent: float (nullable = false)
+ |-- num_sessions: float (nullable = true)
+ |-- mean_hours: float (nullable = true)
+ |-- stdev_hours: float (nullable = true)
+ |-- mean_session_h: float (nullable = true)
+ |-- stdev_session_h: float (nullable = true)
+ |-- mean_songs: float (nullable = true)
+ |-- stdev_songs: float (nullable = true)
+ |-- About17: float (nullable = true)
+ |-- Add_Friend18: float (nullable = true)
+ |-- Add_to_Playlist19: float (nullable = true)
+ |-- Downgrade20: float (nullable = true)
+ |-- Error21: float (nullable = true)
+ |-- Help22: float (nullable = true)
+ |-- Home23: float (nullable = true)
+ |-- Logout24: float (nullable = true)
+ |-- NextSong25: float (nullable = true)
+ |-- Roll_Advert26: float (nullable = true)
+ |-- Save_Settings27: float (nullable = true)
+ |-- Settings28: float (nullable = true)
+ |-- Submit_Downgrade29: float (nullable = true)
+ |-- Submit_Upgrade30: float (nullable = true)
+ |-- Thumbs_Down31: float (nullable = true)
+ |-- Thumbs_Up32: float (nullable = true)
+ |-- Upgrade33: float (nullable = true)
+ |-- About34: float (nullable = true)
+ |-- Add_Friend35: float (nullable = true)
+ |-- Add_to_Playlist36: float (nullable = true)
+ |-- Downgrade37: float (nullable = true)
+ |-- Error38: float (nullable = true)
+ |-- Help39: float (nullable = true)
+ |-- Home40: float (nullable = true)
+ |-- Logout41: float (nullable = true)
+ |-- NextSong42: float (nullable = true)
+ |-- Roll_Advert43: float (nullable = true)
+ |-- Save_Settings44: float (nullable = true)
+ |-- Settings45: float (nullable = true)
+ |-- Submit_Downgrade46: float (nullable = true)
+ |-- Submit_Upgrade47: float (nullable = true)
+ |-- Thumbs_Down48: float (nullable = true)
+ |-- Thumbs_Up49: float (nullable = true)
+ |-- Upgrade50: float (nullable = true)
+ |-- num_aritst: float (nullable = true)
+ |-- paid_percent: float (nullable = true)
 
 </pre>
 </div>
@@ -16118,7 +16471,7 @@ All features added to DataFrame, done in 45975.293827056885
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create vectorAssembler for input feats</span>
@@ -16189,7 +16542,7 @@ only showing top 2 rows
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[47]:</div>
 
 
 
@@ -16219,7 +16572,7 @@ only showing top 2 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Define a function to convert time difference in a readable format with the goal</span>
@@ -16303,7 +16656,13 @@ only showing top 2 rows
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Random-Forest-Classifier">Random Forest Classifier<a class="anchor-link" href="#Random-Forest-Classifier">&#182;</a></h3>
+<h3 id="Random-Forest-Classifier">Random Forest Classifier<a class="anchor-link" href="#Random-Forest-Classifier">&#182;</a></h3><p>Hyperparameters defined in our GridSearchCV:</p>
+<ul>
+<li><strong>minInfoGain</strong>: Minimum amount of information gained about a variable when performing a split within a decision tree. Do not make the split if we´re not going to adquire less info than minInfoGain value.</li>
+<li><strong>numTrees</strong>: Number of trees to be created within the forest ensemble. </li>
+<li><strong>maxDepth</strong>: maximum number of splitting levels to structure the data each tree from the GBT ensemble can go. Important to limit it for preventing the model from learn the data and not the trends from it, the so called overfitting.</li>
+</ul>
+
 </div>
 </div>
 </div>
@@ -16357,7 +16716,17 @@ For Random Forest, the accuracy on the test set is 72.50% and the F-1 score is 6
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Logistic-Regression">Logistic Regression<a class="anchor-link" href="#Logistic-Regression">&#182;</a></h3>
+<h3 id="Logistic-Regression">Logistic Regression<a class="anchor-link" href="#Logistic-Regression">&#182;</a></h3><p>Hyperparameters defined in our GridSearchCV:</p>
+<p>Regularization parameters, to try the model between L1 and L2:</p>
+<ul>
+<li><strong>elasticNetParam</strong> (alpha): The elastic net penalty is defined to set a point in between a Lasso model (elasticparam=1, removing degeneracies caused by hard correlations) and a Ridge method (elasticParam=0, shrinking coefficients of correlated variables). For alpha = 0.0, the penalty is an L2 penalty. For alpha = 1.0, it is an L1 penalty. For 0.0 &lt; alpha &lt; 1.0, the penalty is a combination of L1 and L2. Default is 0.0 which is an L2 penalty</li>
+<li><strong>regParam</strong> (lambda):  regularization parameter, used to add additional information to fix ill-posed problems.</li>
+</ul>
+<p>Other:</p>
+<ul>
+<li><strong>aggregationDepth</strong>: Depth for tree Aggregations performed by Spark when performing training. If feature´s dimensions or number of partitions are large, this param could be set larger.</li>
+</ul>
+
 </div>
 </div>
 </div>
@@ -16411,7 +16780,13 @@ For Logistic Regression, the accuracy on the test set is 77.50% and the F-1 scor
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Gradient-Boosting-Tree">Gradient Boosting Tree<a class="anchor-link" href="#Gradient-Boosting-Tree">&#182;</a></h3>
+<h3 id="Gradient-Boosting-Tree">Gradient Boosting Tree<a class="anchor-link" href="#Gradient-Boosting-Tree">&#182;</a></h3><p>Hyperparameters defined in our GridSearchCV:</p>
+<ul>
+<li><strong>maxDepth</strong>: maximum number of splitting levels to structure the data each tree from the GBT ensemble can go. It is crucial to limit it in order to prevent overfitting. Otherwise the model would learn the data and not the trends from it, which is the goal.</li>
+<li><strong>maxBins</strong>: maximum numbers of "bags" where the trees store values in each split. If it splits info contained within a bin in level 0, the maximum number of bins to divide that info is defined with maxBins.</li>
+<li><strong>maxIter</strong>: Maximum number of iterations, in this case number of trees in the GBT ensemble</li>
+</ul>
+
 </div>
 </div>
 </div>
@@ -16466,6 +16841,191 @@ For Gradient Boosting Class, the accuracy on the test set is 80.00% and the F-1 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Model-analysis">Model analysis<a class="anchor-link" href="#Model-analysis">&#182;</a></h1><p>For the present analysis, it is crucial to take into account that just tracking accuracy can be misleading for two main reasons:</p>
+<ul>
+<li>The <strong>small size</strong> of the ML Ready Dataset (just around 250 users)</li>
+<li>The <strong>imbalance between classes</strong>
+So we have been keeping track of F1 Score along with accuracy for the three models tried:</li>
+</ul>
+<p><strong>After training ang tuning these 3 different classifiers</strong>, results show:</p>
+<ul>
+<li><strong>Random forest</strong> performs simply perfect (Accuracy 100%) with training set but significantly worse with test (Accuracy 72,5%), showing a clear case of overfitting, typical in Random Forests when not setting a limit for depth. It could be improved working harder in the grid hyperparameters tuning</li>
+<li><strong>Logistic Regression</strong> performs smoothly and quite similarly both in train (80.54% Acc) and test (77,5% Acc), with a nice F1 Score results(76% train, 74% test), assuring us a good balance between Precision and Recall. Nice efficiency while training, making it a nice candidate to be the chosen one.</li>
+<li><strong>GBT</strong> although its results (both accuracy and F1 Score) for the test set are even better than Logistic Regression, it shows symptoms of overfitting as it is essentially a boosted random forest. Again it could be fixed by working in hyperpameter tuning and extending the number of folds in Cross Validation. The fitting time is a bit longer than the other two, though.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Selected-model">Selected model<a class="anchor-link" href="#Selected-model">&#182;</a></h2><p><strong>Logistic Regression</strong> seems to be the best candidate for the present job, so we should dig deeper to understand it´s performance:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Model-parameters">Model parameters<a class="anchor-link" href="#Model-parameters">&#182;</a></h3><p>We performed a GridSearch trying different combinations of hyperparameters with the goal of achieving the best possible model. It is interesting to look at those parameters for the resulting "bestModel" within all the Logistic Regressions tried.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[96]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">best</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">bestModel</span>
+<span class="n">param_names_raw</span> <span class="o">=</span> <span class="n">best</span><span class="o">.</span><span class="n">extractParamMap</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">param_names_clean</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">param_names</span><span class="p">:</span>
+    <span class="n">param_names_clean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span> 
+    
+<span class="n">param_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">best</span><span class="o">.</span><span class="n">extractParamMap</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+<span class="n">params_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">param_values</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">param_names_clean</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;After gridsearch, the parameters we optimized resulted in a bestModel with:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;- regParam = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">params_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;regParam&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;- elasticNetParam = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">params_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;elasticNetParam&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;- aggregationDepth = </span><span class="si">{}</span><span class="s1">. It was the default value recommended by Spark&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">params_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;aggregationDepth&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Both regularization parameters ended up with a solution in betwwen L1 an L2&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Find below a df with resulting values for all hyperparameters &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;for the Logistic Regresion bestModel obtained after Grid Search:&#39;</span><span class="p">)</span>
+
+<span class="n">params_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>After gridsearch, the parameters we optimized resulted in a bestModel with:
+- regParam = 0.01
+- elasticNetParam = 0.5
+- aggregationDepth = 2. It was the default value recommended by Spark
+Both regularization parameters ended up with a solution in betwwen L1 an L2
+
+
+Find below a df with resulting values for all hyperparameters 
+for the Logistic Regresion bestModel obtained after Grid Search:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[96]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>family</th>
+      <td>auto</td>
+    </tr>
+    <tr>
+      <th>featuresCol</th>
+      <td>features</td>
+    </tr>
+    <tr>
+      <th>fitIntercept</th>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>labelCol</th>
+      <td>label</td>
+    </tr>
+    <tr>
+      <th>maxIter</th>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>predictionCol</th>
+      <td>prediction</td>
+    </tr>
+    <tr>
+      <th>probabilityCol</th>
+      <td>probability</td>
+    </tr>
+    <tr>
+      <th>rawPredictionCol</th>
+      <td>rawPrediction</td>
+    </tr>
+    <tr>
+      <th>standardization</th>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>threshold</th>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>tol</th>
+      <td>1e-06</td>
+    </tr>
+    <tr>
+      <th>aggregationDepth</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>elasticNetParam</th>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>regParam</th>
+      <td>0.01</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Feature-importance">Feature importance<a class="anchor-link" href="#Feature-importance">&#182;</a></h3><p>When training and predicting with a classifier, it is often important to give a clear explanation of what is going on within the "black box". MLearning is not a matter of faith but of math and common sense, so being able to explain the inffluence of each of the features to the prediction is crucial when explaining what the model is doing and what data is more important for the sake of the prediction.</p>
 
 </div>
@@ -16473,7 +17033,7 @@ For Gradient Boosting Class, the accuracy on the test set is 80.00% and the F-1 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[128]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Store feature names in an array</span>
@@ -16522,19 +17082,7 @@ For Gradient Boosting Class, the accuracy on the test set is 80.00% and the F-1 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Model-analysis">Model analysis<a class="anchor-link" href="#Model-analysis">&#182;</a></h2><p>For the present analysis, it is crucial to take into account that just tracking accuracy can be misleading for two main reasons:</p>
-<ul>
-<li>The <strong>small size</strong> of the ML Ready Dataset (just around 250 users)</li>
-<li>The <strong>imbalance between classes</strong>
-So we have been keeping track of F1 Score along with accuracy for the three models tried:</li>
-</ul>
-<p><strong>After training ang tuning these 3 different classifiers</strong>, results show:</p>
-<ul>
-<li><strong>Random forest</strong> performs simply perfect (Accuracy 100%) with training set but significantly worse with test (Accuracy 72,5%), showing a clear case of overfitting, typical in Random Forests when not setting a limit for depth. It could be improved working harder in the grid hyperparameters tuning</li>
-<li><strong>Logistic Regression</strong> performs smoothly and quite similarly both in train (80.54% Acc) and test (77,5% Acc), with a nice F1 Score results(76% train, 74% test), assuring us a good balance between Precision and Recall. Nice efficiency while training, making it a nice candidate to be the chosen one.</li>
-<li><strong>GBT</strong> although its results (both accuracy and F1 Score) for the test set are even better than Logistic Regression, it shows symptoms of overfitting as it is essentially a boosted random forest. Again it could be fixed by working in hyperpameter tuning and extending the number of folds in Cross Validation. The fitting time is a bit longer than the other two, though.</li>
-</ul>
-<h3 id="Features-importance">Features importance<a class="anchor-link" href="#Features-importance">&#182;</a></h3><p>As shown in the chart above, there are:</p>
+<p>As shown in the chart above, there are:</p>
 <ul>
 <li>Several <strong>features with almost no inffluence in the churn decision</strong> as ThumbsUp, number of songs and artists, length of session, or some pages (Help, Settings). </li>
 <li>Some <strong>features directly related with churning</strong>, as Percentage of paid songs, Roll Advert, Downgrade, Thumbs Down, or OS as Windows or Ipad, meaning that if a user shows this behavioural or static information is more prone to churn. </li>
